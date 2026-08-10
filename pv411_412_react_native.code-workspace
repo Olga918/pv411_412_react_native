@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {
+      "name": "pv411_412_react_native",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "npm.enableScriptExplorer": true,
+    "npm.autoDetect": "on",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "never",
+      "source.sortMembers": "explicit"
+    }
+  }
+}

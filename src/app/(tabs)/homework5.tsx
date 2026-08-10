@@ -1,32 +1,81 @@
-import { ScrollView, StyleSheet, Text } from "react-native";
-import { Container } from "@/components/ui/container";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+  Pressable,
+} from "react-native";
+import { useNavigation } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Constants from "expo-constants";
+import Entypo from "@expo/vector-icons/Entypo";
 
-const APP_NAME = "React Native Lessons";
-const APP_YEAR = "2026";
-const APP_VERSION = Constants.expoConfig?.version ?? "1.0.0";
+interface ChatUser {
+  id: string;
+  name: string;
+  message: string;
+  time: string;
+  color: string;
+  initial: string;
+}
+
+const USERS: ChatUser[] = [
+  { id: "1", name: "Sakshi", message: "Hi! How are you?", time: "3:08 PM", color: "#4caf50", initial: "S" },
+  { id: "2", name: "Anna", message: "See you tomorrow", time: "2:41 PM", color: "#2196f3", initial: "A" },
+  { id: "3", name: "Oleg", message: "Ok, thanks!", time: "1:15 PM", color: "#ff9800", initial: "O" },
+  { id: "4", name: "Maria", message: "Photo", time: "12:03 PM", color: "#9c27b0", initial: "M" },
+  { id: "5", name: "Ivan", message: "Call me later", time: "11:20 AM", color: "#e91e63", initial: "I" },
+  { id: "6", name: "Kate", message: "Homework done ✅", time: "10:05 AM", color: "#009688", initial: "K" },
+  { id: "7", name: "Dima", message: "Where are you?", time: "Yesterday", color: "#3f51b5", initial: "D" },
+  { id: "8", name: "Lena", message: "Good night", time: "Yesterday", color: "#795548", initial: "L" },
+];
 
 const Homework5Screen = () => {
-  return (
-    <SafeAreaView style={styles.safe}>
-      <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.header}>Домашнє завдання 5</Text>
-        <Text style={styles.subtitle}>Бічна панель</Text>
+  const navigation = useNavigation();
 
-        <Container>
-          <Text style={styles.text}>
-            Бічна панель як у Telegram: відкривається свайпом зліва.
-          </Text>
-          <Text style={styles.text}>В самому низу панелі додано:</Text>
-          <Text style={styles.value}>{APP_NAME}</Text>
-          <Text style={styles.value}>{APP_YEAR}</Text>
-          <Text style={styles.value}>v{APP_VERSION}</Text>
-          <Text style={styles.hint}>
-            Відкрий меню зліва і подивись низ панелі.
-          </Text>
-        </Container>
-      </ScrollView>
+  const openMenu = () => {
+    // open side drawer (Telegram-style menu)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const nav = navigation as any;
+    if (nav.openDrawer) {
+      nav.openDrawer();
+    } else if (nav.getParent?.()?.openDrawer) {
+      nav.getParent().openDrawer();
+    }
+  };
+
+  return (
+    <SafeAreaView style={styles.safe} edges={["top"]}>
+      {/* Шапка як у Telegram: ☰ + Telegram */}
+      <View style={styles.header}>
+        <TouchableOpacity onPress={openMenu} style={styles.menuBtn} hitSlop={12}>
+          <Entypo name="menu" size={28} color="#fff" />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>Telegram</Text>
+      </View>
+
+      {/* Колонка користувачів / чатів */}
+      <FlatList
+        data={USERS}
+        keyExtractor={(item) => item.id}
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
+        renderItem={({ item }) => (
+          <Pressable style={styles.row}>
+            <View style={[styles.avatar, { backgroundColor: item.color }]}>
+              <Text style={styles.avatarText}>{item.initial}</Text>
+            </View>
+            <View style={styles.rowText}>
+              <View style={styles.rowTop}>
+                <Text style={styles.name}>{item.name}</Text>
+                <Text style={styles.time}>{item.time}</Text>
+              </View>
+              <Text style={styles.message} numberOfLines={1}>
+                {item.message}
+              </Text>
+            </View>
+          </Pressable>
+        )}
+      />
     </SafeAreaView>
   );
 };
@@ -34,46 +83,68 @@ const Homework5Screen = () => {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: "#f3f3f3",
-  },
-  content: {
-    paddingBottom: 24,
+    backgroundColor: "#fff",
   },
   header: {
-    margin: 8,
-    padding: 8,
+    height: 56,
+    backgroundColor: "#527da3",
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 12,
+  },
+  menuBtn: {
+    marginRight: 16,
+    padding: 4,
+  },
+  headerTitle: {
+    color: "#fff",
     fontSize: 20,
     fontWeight: "bold",
-    textAlign: "center",
-    backgroundColor: "#91345b",
-    color: "white",
-    borderRadius: 8,
   },
-  subtitle: {
-    textAlign: "center",
-    color: "#722b48",
-    fontSize: 16,
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+  },
+  avatar: {
+    width: 52,
+    height: 52,
+    borderRadius: 26,
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 12,
+  },
+  avatarText: {
+    color: "#fff",
+    fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 8,
   },
-  text: {
-    fontSize: 15,
-    color: "#444",
-    marginBottom: 8,
-    lineHeight: 22,
+  rowText: {
+    flex: 1,
   },
-  value: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#333",
+  rowTop: {
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginBottom: 4,
-    marginLeft: 8,
   },
-  hint: {
-    marginTop: 12,
+  name: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#222",
+  },
+  time: {
+    fontSize: 12,
+    color: "#8a8a8a",
+  },
+  message: {
     fontSize: 14,
-    color: "#722b48",
-    fontWeight: "bold",
+    color: "#6d6d6d",
+  },
+  separator: {
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: "#e6e6e6",
+    marginLeft: 78,
   },
 });
 

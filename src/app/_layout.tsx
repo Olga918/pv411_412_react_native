@@ -15,6 +15,11 @@ const RootLayout = ()=>{
                         presentation: 'modal',
                         headerShown: false
                     }}/>
+                    <Stack.Screen name="video_modal" options={{
+                        presentation: 'modal',
+                        headerShown: false,
+                        animation: 'slide_from_bottom',
+                    }}/>
                 </Stack>
             </SafeAreaProvider>
     )

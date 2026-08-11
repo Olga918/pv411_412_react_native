@@ -183,6 +183,15 @@ const TabLayout = () => {
                         }}
                     />
                     <Drawer.Screen
+                        name="homework6"
+                        options={{
+                            drawerLabel: "ДЗ 6 MyTube",
+                            drawerIcon: ({ color, size }) => (
+                                <Entypo name="youtube" size={size} color={color} />
+                            ),
+                        }}
+                    />
+                    <Drawer.Screen
                         name="settings"
                         options={{
                             drawerLabel: "Settings",

@@ -12,6 +12,7 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import Constants from "expo-constants";
 
 const APP_NAME = "React Native Lessons";
@@ -131,7 +132,16 @@ const TabLayout = () => {
                         options={{
                             drawerLabel: "Contacts",
                             drawerIcon: ({ color, size }) => (
-                                <MaterialIcons name="contacts" size={size} color={color} />
+                                <FontAwesome6 name="contact-book" size={size} color={color} />
+                            ),
+                        }}
+                    />
+                    <Drawer.Screen
+                        name="avatar"
+                        options={{
+                            drawerLabel: "Avatar",
+                            drawerIcon: ({ color, size }) => (
+                                <MaterialIcons name="account-circle" size={size} color={color} />
                             ),
                         }}
                     />

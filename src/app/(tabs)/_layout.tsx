@@ -192,6 +192,15 @@ const TabLayout = () => {
                         }}
                     />
                     <Drawer.Screen
+                        name="homework7"
+                        options={{
+                            drawerLabel: "ДЗ 7 Ліхтарик",
+                            drawerIcon: ({ color, size }) => (
+                                <MaterialIcons name="flashlight-on" size={size} color={color} />
+                            ),
+                        }}
+                    />
+                    <Drawer.Screen
                         name="settings"
                         options={{
                             drawerLabel: "Settings",

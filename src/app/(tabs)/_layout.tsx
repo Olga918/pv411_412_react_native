@@ -52,8 +52,10 @@ const TabLayout = () => {
         <SafeAreaProvider>
             <GestureHandlerRootView style={{ flex: 1 }}>
                 <Drawer
+                    initialRouteName="index"
                     drawerContent={(props) => <DrawerContent {...props} />}
                     screenOptions={{
+                        lazy: true,
                         swipeEnabled: true,
                         swipeEdgeWidth: 100,
                         headerShown: false,
@@ -197,6 +199,15 @@ const TabLayout = () => {
                             drawerLabel: "ДЗ 7 Ліхтарик",
                             drawerIcon: ({ color, size }) => (
                                 <MaterialIcons name="flashlight-on" size={size} color={color} />
+                            ),
+                        }}
+                    />
+                    <Drawer.Screen
+                        name="homework8"
+                        options={{
+                            drawerLabel: "ДЗ 8 Контакти",
+                            drawerIcon: ({ color, size }) => (
+                                <MaterialIcons name="contact-page" size={size} color={color} />
                             ),
                         }}
                     />

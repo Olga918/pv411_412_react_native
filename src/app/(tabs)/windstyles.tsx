@@ -1,7 +1,7 @@
-import { View, Text, StyleSheet } from "react-native";
+﻿import { View, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-/** StyleSheet вместо className — NativeWind на этом Expo Go даёт native crash */
+/** StyleSheet instead of className — NativeWind crashes this Expo Go */
 const TailWindScreen = () => {
   return (
     <SafeAreaView style={styles.safe}>

@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+﻿import { useCallback, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -21,7 +21,7 @@ const Homework7Screen = () => {
   const [photoUri, setPhotoUri] = useState<string | null>(null);
   const [taking, setTaking] = useState(false);
 
-  // При виході з екрана скидаємо знімок і ліхтарик
+  // Reset photo and torch when leaving the screen
   useFocusEffect(
     useCallback(() => {
       return () => {
@@ -33,7 +33,7 @@ const Homework7Screen = () => {
     }, [])
   );
 
-  const goExit = () => {
+  const goВийти = () => {
     setPhotoUri(null);
     setTorchOn(false);
     if (router.canGoBack()) {
@@ -81,7 +81,7 @@ const Homework7Screen = () => {
           <TouchableOpacity style={styles.button} onPress={requestPermission}>
             <Text style={styles.buttonText}>Дозволити камеру</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.exitBtn]} onPress={goExit}>
+          <TouchableOpacity style={[styles.button, styles.exitBtn]} onPress={goВийти}>
             <Text style={styles.buttonText}>Вийти</Text>
           </TouchableOpacity>
         </View>
@@ -93,7 +93,7 @@ const Homework7Screen = () => {
     return (
       <SafeAreaView style={styles.safe} edges={["top", "bottom"]}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={goExit} hitSlop={12} style={styles.headerBtn}>
+          <TouchableOpacity onPress={goВийти} hitSlop={12} style={styles.headerBtn}>
             <MaterialIcons name="close" size={26} color="#fff" />
           </TouchableOpacity>
           <Text style={styles.headerTitle}>Знімок</Text>
@@ -107,7 +107,7 @@ const Homework7Screen = () => {
             <MaterialIcons name="photo-camera" size={22} color="#fff" />
             <Text style={styles.buttonText}>Зробити ще знімок</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.exitBtn]} onPress={goExit}>
+          <TouchableOpacity style={[styles.button, styles.exitBtn]} onPress={goВийти}>
             <MaterialIcons name="exit-to-app" size={22} color="#fff" />
             <Text style={styles.buttonText}>Вийти</Text>
           </TouchableOpacity>
@@ -119,7 +119,7 @@ const Homework7Screen = () => {
   return (
     <SafeAreaView style={styles.safe} edges={["top", "bottom"]}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={goExit} hitSlop={12} style={styles.headerBtn}>
+        <TouchableOpacity onPress={goВийти} hitSlop={12} style={styles.headerBtn}>
           <MaterialIcons name="close" size={26} color="#fff" />
         </TouchableOpacity>
         <MaterialIcons name="flashlight-on" size={24} color="#fff" />
@@ -173,7 +173,7 @@ const Homework7Screen = () => {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={[styles.button, styles.exitBtn]} onPress={goExit}>
+        <TouchableOpacity style={[styles.button, styles.exitBtn]} onPress={goВийти}>
           <MaterialIcons name="exit-to-app" size={20} color="#fff" />
           <Text style={styles.buttonText}>Вийти</Text>
         </TouchableOpacity>

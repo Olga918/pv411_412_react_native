@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+﻿import { useMemo, useState } from "react";
 import {
   View,
   Text,
@@ -135,8 +135,7 @@ const Homework10Screen = () => {
             <View>
               <Text style={styles.title}>ДЗ 10 — CRUD продуктів</Text>
               <Text style={styles.hint}>
-                Створення, оновлення, мʼяке і повне видалення. Чекбокс показує
-                видалені продукти.
+                Створення, оновлення, мʼяке і повне видалення. Чекбокс показує видалені продукти.
               </Text>
 
               <View style={styles.formCard}>
@@ -214,7 +213,7 @@ const Homework10Screen = () => {
                   {item.name}
                   {item.deleted ? " (видалено)" : ""}
                 </Text>
-                <Text style={styles.cardPrice}>{item.price} грн</Text>
+                <Text style={styles.cardPrice}>{item.price}</Text>
                 {item.description ? (
                   <Text style={styles.cardDesc}>{item.description}</Text>
                 ) : null}

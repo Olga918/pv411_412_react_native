@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import {
   View,
   Text,
@@ -91,11 +91,11 @@ const PreviewCard = ({
   );
 };
 
-const Homework6Screen = () => {
+const Главнаяwork6Screen = () => {
   const router = useRouter();
   const [tab, setTab] = useState<BottomTab>("home");
 
-  const goHome = () => {
+  const goГлавная = () => {
     router.push("/");
   };
 
@@ -129,7 +129,7 @@ const Homework6Screen = () => {
   return (
     <SafeAreaView style={styles.safe} edges={["top"]}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={goHome} style={styles.homeBtn} hitSlop={12}>
+        <TouchableOpacity onPress={goГлавная} style={styles.homeBtn} hitSlop={12}>
           <Entypo name="home" size={24} color="#fff" />
         </TouchableOpacity>
         <Entypo name="youtube" size={28} color="#fff" />
@@ -137,8 +137,8 @@ const Homework6Screen = () => {
       </View>
 
       <ScrollView contentContainerStyle={styles.content}>
-        <TouchableOpacity style={styles.homeBanner} onPress={goHome}>
-          <Text style={styles.homeBannerText}>← На головну</Text>
+        <TouchableOpacity style={styles.homeBanner} onPress={goГлавная}>
+          <Text style={styles.homeBannerText}>← Главная</Text>
         </TouchableOpacity>
 
         {tab === "home" &&
@@ -166,7 +166,7 @@ const Homework6Screen = () => {
 
         {tab === "you" && (
           <View style={styles.placeholder}>
-            <Text style={styles.placeholderTitle}>Ви</Text>
+            <Text style={styles.placeholderTitle}>Вы</Text>
             <Text style={styles.placeholderText}>Ваш профіль MyTube</Text>
           </View>
         )}
@@ -204,7 +204,7 @@ const Homework6Screen = () => {
               <View style={styles.notifDot} />
             </View>
             <Text style={[styles.tabLabel, tab === "subs" && styles.tabLabelActive]}>
-              Подписки
+              Підписки
             </Text>
           </TouchableOpacity>
 
@@ -213,7 +213,7 @@ const Homework6Screen = () => {
               <Text style={styles.avatarText}>0</Text>
             </View>
             <Text style={[styles.tabLabel, tab === "you" && styles.tabLabelActive]}>
-              Вы
+              You
             </Text>
           </TouchableOpacity>
         </View>
@@ -380,4 +380,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Homework6Screen;
+export default Главнаяwork6Screen;

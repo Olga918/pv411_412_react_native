@@ -1,4 +1,4 @@
-import "react-native-gesture-handler";
+﻿import "react-native-gesture-handler";
 import { View, ActivityIndicator } from "react-native";
 import { Redirect, Slot, useSegments } from "expo-router";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -6,7 +6,7 @@ import { AuthProvider, useAuth } from "@/context/AuthContext";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const InitialLayout = () => {
-  const { token, isLoading } = useAuth();
+  const { token, hasPin, isUnlocked, isLoading } = useAuth();
   const segments = useSegments();
 
   if (isLoading) {
@@ -23,15 +23,34 @@ const InitialLayout = () => {
     );
   }
 
-  const inAuthGroup = segments[0] === "(auth)";
+  const group = segments[0];
+  const screen = segments[1];
+  const inAuth = group === "(auth)";
 
-  // Уже вошли раньше (токен в SecureStore) — сразу на уроки, без мигания Login
-  if (token && inAuthGroup) {
-    return <Redirect href="/(tabs)" />;
+  if (!token) {
+    if (!inAuth || screen !== "login") {
+      return <Redirect href="/(auth)/login" />;
+    }
+    return <Slot />;
   }
 
-  if (!token && !inAuthGroup) {
-    return <Redirect href="/(auth)/login" />;
+  if (!hasPin) {
+    if (!inAuth || screen !== "set-pin") {
+      return <Redirect href="/(auth)/set-pin" />;
+    }
+    return <Slot />;
+  }
+
+  if (!isUnlocked) {
+    if (!inAuth || screen !== "unlock-pin") {
+      return <Redirect href="/(auth)/unlock-pin" />;
+    }
+    return <Slot />;
+  }
+
+  // Unlocked
+  if (inAuth) {
+    return <Redirect href="/(tabs)/profile" />;
   }
 
   return <Slot />;

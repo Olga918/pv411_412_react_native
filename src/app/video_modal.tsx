@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+﻿import { useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -114,7 +114,7 @@ const VideoModalScreen = () => {
     };
   }, [musicSource, musicOn, audioPlayer]);
 
-  const stopAllAndClose = () => {
+  const stopAllAndЗакрити = () => {
     try {
       audioPlayer.pause();
       player.pause();
@@ -143,7 +143,7 @@ const VideoModalScreen = () => {
 
       {!isLandscape && (
         <SafeAreaView edges={["top"]} style={styles.topBar}>
-          <TouchableOpacity onPress={stopAllAndClose} style={styles.backBtn} hitSlop={12}>
+          <TouchableOpacity onPress={stopAllAndЗакрити} style={styles.backBtn} hitSlop={12}>
             <Entypo name="chevron-left" size={28} color="#fff" />
           </TouchableOpacity>
           <Text style={styles.topTitle} numberOfLines={1}>
@@ -224,7 +224,7 @@ const VideoModalScreen = () => {
                 </Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.closeBtn} onPress={stopAllAndClose}>
+              <TouchableOpacity style={styles.closeBtn} onPress={stopAllAndЗакрити}>
                 <Text style={styles.closeText}>Закрити</Text>
               </TouchableOpacity>
             </View>
@@ -233,7 +233,7 @@ const VideoModalScreen = () => {
       )}
 
       {isLandscape && (
-        <TouchableOpacity style={styles.landscapeClose} onPress={stopAllAndClose}>
+        <TouchableOpacity style={styles.landscapeЗакрити} onPress={stopAllAndЗакрити}>
           <Entypo name="cross" size={26} color="#fff" />
         </TouchableOpacity>
       )}
@@ -358,7 +358,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
   },
-  landscapeClose: {
+  landscapeЗакрити: {
     position: "absolute",
     top: 16,
     right: 16,

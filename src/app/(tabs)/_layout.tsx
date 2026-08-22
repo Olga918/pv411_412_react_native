@@ -129,7 +129,7 @@ const TabLayout = () => {
       <Drawer.Screen
         name="database"
         options={{
-          drawerLabel: "Database",
+          drawerLabel: "ДЗ 10 CRUD",
           drawerIcon: ({ color, size }) => (
             <MaterialIcons name="storage" size={size} color={color} />
           ),

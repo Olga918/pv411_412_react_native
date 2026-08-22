@@ -57,7 +57,7 @@ const LoginScreen = ()=>{
             
         </TouchableOpacity>
         <TouchableOpacity style={styles.guestButton} onPress={handleGuest} disabled={loading}>
-            <Text style={styles.guestButtonText}>Увійти як гість (для уроків/ДЗ)</Text>
+            <Text style={styles.guestButtonText}>Увійти як гість</Text>
         </TouchableOpacity>
         </View>
     )

@@ -1,21 +1,21 @@
-import { View, Text, StyleSheet, TextInput, FlatList, TouchableOpacity, Alert } from "react-native";
+﻿import { View, Text, StyleSheet, TextInput, FlatList, TouchableOpacity, Alert } from "react-native";
 import { dbManager, Product } from "@/lib/db";
 import { useEffect, useState } from "react";
 import { Container } from "@/components/ui/container";
 import Checkbox from "expo-checkbox";
 
 /**
- * Клас / ДЗ: допрацювати CRUD продуктів (SQLite).
- * - форма створення / оновлення
- * - мʼяке і повне видалення
- * - чекбокс «показати видалені»
+ * Class / HW: product CRUD (SQLite).
+ * - create / update form
+ * - soft and hard delete
+ * - checkbox to show deleted products
  */
 const DatabaseScreen = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editingId, setОновитиingId] = useState<string | null>(null);
   const [showDeleted, setShowDeleted] = useState(false);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const DatabaseScreen = () => {
     setTitle("");
     setPrice("");
     setDescription("");
-    setEditingId(null);
+    setОновитиingId(null);
   };
 
   const saveProduct = async () => {
@@ -73,12 +73,12 @@ const DatabaseScreen = () => {
     }
   };
 
-  const startEdit = (item: Product) => {
+  const startОновити = (item: Product) => {
     if (item.deleted_at) {
       Alert.alert("Оновлення", "Спочатку віднови продукт.");
       return;
     }
-    setEditingId(item.id);
+    setОновитиingId(item.id);
     setTitle(item.title);
     setPrice(String(item.price));
     setDescription(item.description ?? "");
@@ -173,7 +173,7 @@ const DatabaseScreen = () => {
                 {item.title}
                 {isDeleted ? " (видалено)" : ""}
               </Text>
-              <Text style={styles.listItemPrice}>{item.price} грн</Text>
+              <Text style={styles.listItemPrice}>{item.price}</Text>
               {item.description ? (
                 <Text style={styles.desc}>{item.description}</Text>
               ) : null}
@@ -186,7 +186,7 @@ const DatabaseScreen = () => {
                   <>
                     <TouchableOpacity
                       style={styles.actionBtn}
-                      onPress={() => startEdit(item)}
+                      onPress={() => startОновити(item)}
                     >
                       <Text style={styles.actionText}>Оновити</Text>
                     </TouchableOpacity>

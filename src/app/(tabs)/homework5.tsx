@@ -1,4 +1,4 @@
-import {
+﻿import {
   View,
   Text,
   StyleSheet,
@@ -46,7 +46,7 @@ const Homework5Screen = () => {
 
   return (
     <SafeAreaView style={styles.safe} edges={["top"]}>
-      {/* Шапка як у Telegram: ☰ + Telegram */}
+      {/* Header like Telegram: ☰ + Telegram */}
       <View style={styles.header}>
         <TouchableOpacity onPress={openMenu} style={styles.menuBtn} hitSlop={12}>
           <Entypo name="menu" size={28} color="#fff" />
@@ -54,7 +54,7 @@ const Homework5Screen = () => {
         <Text style={styles.headerTitle}>Telegram</Text>
       </View>
 
-      {/* Колонка користувачів / чатів */}
+      {/* Users / chats column */}
       <FlatList
         data={USERS}
         keyExtractor={(item) => item.id}
